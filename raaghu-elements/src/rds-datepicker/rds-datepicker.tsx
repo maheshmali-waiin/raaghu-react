@@ -151,7 +151,7 @@ const RdsDatepicker = (props: RdsDatepickerProps) => {
     return (
         <>
             {props.type === "default" && (
-                <>
+                <><div className="mt-2">
                     {props.DatePickerLabel && <label className="form-label">{props.DatePickerLabel}</label>}
                     <div className="input-group input-group-datePicker mb-3 mt-1">
                         {/* <div className="input-group-append datepicker__icon-box">
@@ -183,10 +183,11 @@ const RdsDatepicker = (props: RdsDatepickerProps) => {
                             ></RdsIcon>
                         </span>
                     </div>
+                    </div>
                 </>
             )}
             {props.type === "advanced" && (
-                <>
+                <><div className="mt-2">
                     {props.DatePickerLabel && <label className="form-label">{props.DatePickerLabel}</label>}
                     <div className="dropdown border rounded justify-content-between text-start d-block datepicker mt-1">
                         <button
@@ -264,10 +265,11 @@ const RdsDatepicker = (props: RdsDatepickerProps) => {
                             />
                         </ul>
                     </div>
+                    </div>
                 </>
             )}
             {props.type === "withTime" && (
-                <>
+                <><div className="mt-2">
                     {props.DatePickerLabel && (
                         <label className="form-label">{props.DatePickerLabel}</label>
                     )}
@@ -291,6 +293,7 @@ const RdsDatepicker = (props: RdsDatepickerProps) => {
                                 stroke={true}
                             ></RdsIcon>
                         </span>
+                    </div>
                     </div>
                 </>
             )}

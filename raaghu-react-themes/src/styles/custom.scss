@@ -3279,8 +3279,7 @@ $btn-border-radius: $border-radius-xs !default;
 
     /* css for the small mobile view icons getting hide in menu directory */
 @media (max-width: 768px) {
-   #mobileviewmenusdirectory ol, ul
-    {
+    #mobileviewmenusdirectory ol, #mobileviewmenusdirectory ul {
         padding-left: 0.9rem !important;
     }
   }

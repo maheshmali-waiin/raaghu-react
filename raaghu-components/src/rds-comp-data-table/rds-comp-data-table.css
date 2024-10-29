@@ -50,10 +50,10 @@
     .dropdown-adjusted.show{
         z-index: 2;
     }
-    tr{
+    /*tr{
         &:hover{
             z-index: 0;
             position: relative;
         }
-    }
+    }*/
 }

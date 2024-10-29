@@ -22,10 +22,13 @@
    max-width: 190px;
    z-index: 3;
 }
-
-.table>tbody {
-    vertical-align: middle !important;
-}
+    #sortTable thead th:hover:first-child,
+    #sortTable tbody td:hover:first-child{
+        position:static;
+    }
+    .table > tbody {
+        vertical-align: middle !important;
+    }
 
 .loader {
     border: 4px solid #f3f3f3;

@@ -1894,6 +1894,96 @@ $form-feedback-color: $gray-700;
   color: $primary;*/
 }
 
+.btn-tertiary {
+    @include button-variant( $bg-neutral-lighter-default, // background
+    $bg-neutral-lighter-default, // border
+    $txt-neutral-dark-default // text color
+    );
+    background-color:$btn-tertiary-solid-default;
+    color: $txt-neutral-light-default; // text color
+    border: $btn-tertiary-solid-default; // border
+    
+    svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: $input-neutral-outline-default;
+ 
+        polyline.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        polygon.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        ellipse.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        path.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        line.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        rect.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        circle.icon {
+            stroke: $input-neutral-outline-default;
+        }
+    }
+}
+
+.btn-neutral {
+    @include button-variant( $bg-neutral-lighter-default, // background
+    $bg-neutral-lighter-default, // border
+    $txt-neutral-dark-default // text color
+    );
+    background-color:$btn-neutral-solid-default;
+    color: $txt-neutral-light-default; // text color
+    border: $btn-neutral-solid-default; // border
+    
+    svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: $input-neutral-outline-default;
+ 
+        polyline.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        polygon.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        ellipse.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        path.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        line.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        rect.icon {
+            stroke: $input-neutral-outline-default;
+        }
+ 
+        circle.icon {
+            stroke: $input-neutral-outline-default;
+        }
+    }
+}
+
 @each $color, $value in $theme-colors {
     .btn-outline-#{$color} {
         @include button-outline-variant($value);

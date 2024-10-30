@@ -53,7 +53,7 @@ export const SingleLineAlert: Story = {
     args: {
         type: "info",
         alertheading: "Heading Title. ",
-        alertmessage: "This is the description of the message bar.",
+        alertmessage: "This is the description of the message bar Hello.",
         border:"none",
         size: "small",
         dismisable: true,

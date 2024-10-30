@@ -34,7 +34,7 @@ export const Default: Story = {
         items: [
             {
                 id: "1",
-                title: "Accordion Title",
+                title: "Accordion Title1",
                 accordionContent: (
                     <div className='border p-4'>
                         <p>Replace with your content component </p>
@@ -43,7 +43,7 @@ export const Default: Story = {
             },
             {
                 id: "2",
-                title: "Accordion Title",
+                title: "Accordion Title2",
                 accordionContent: (
                     <div className='border p-4'>
                         <p>Replace with your content component </p>
@@ -52,7 +52,7 @@ export const Default: Story = {
             },
             {
                 id: "3",
-                title: "Accordion Title",
+                title: "Accordion Title3",
                 accordionContent: (
                     <div className='border p-4'>
                         <p>Replace with your content component </p>

@@ -113,6 +113,7 @@ const isFormValid =isTitleValid(postData?.title) && isSlugValid(postData?.slug) 
                 onChange={(item: any) => {
                   handlerBlogDataChange(item.value, "blogId");
                 }}
+                key={`blogId-${postData?.blogId}`}
                 dataTestId="twofactList"
               ></RdsSelectList>
             </div>

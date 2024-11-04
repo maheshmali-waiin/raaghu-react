@@ -57,3 +57,9 @@
         }
     }
 }
+/* Default styles for action buttons */
+#action_column .btn {
+    padding: 0.3rem !important;
+  }
+  
+  

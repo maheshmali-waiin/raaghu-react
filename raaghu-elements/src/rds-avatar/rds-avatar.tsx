@@ -3,6 +3,7 @@ import "./rds-avatar.css";
 
 import validator from "validator";
 import { colors } from "../../libs/types";
+import RdsIcon from "../rds-icon/rds-icon";
 
 export interface RdsAvatarProps {
     avatars?: RdsAvatarProps[];
@@ -30,6 +31,7 @@ export interface RdsAvatarProps {
     activeDotBottom?: boolean;
     maxVisibleAvatars?: number;
     activityChain?: boolean;
+    type?: string;
 }
 
 const RdsAvatar = (props: RdsAvatarProps) => {
@@ -85,7 +87,25 @@ const RdsAvatar = (props: RdsAvatarProps) => {
         return classes;
     }
 
+ // Function to get icon size based on the size prop
+ const getIconSize = (size:any) => {
+    switch (size) {
+      case 'smallest':
+        return { height: '10px', width: '10px' };
+      case 'small':
+        return { height: '15px', width: '15px' };
+      case 'medium':
+        return { height: '20px', width: '20px' };
+      case 'large':
+        return { height: '25px', width: '25px' };
+      case 'largest':
+        return { height: '30px', width: '30px' };
+      default:
+        return { height: '20px', width: '20px' };
+    }
+  };
 
+  const iconSize = getIconSize(props.size);
 
 
     const FL = props.firstName || "";
@@ -201,19 +221,46 @@ const RdsAvatar = (props: RdsAvatarProps) => {
 
                 {(avtarOnly || avtarWithName) && !stackingAvatar && (
                     <>
-                    <div className={`flex-grow-0 align-items-center ${Aligned}`} style={{ position: "relative" }}>
-                        <img
-                            src={withPP}
-                            className={classes()}
-                            alt="profile-default"
-                            style={{padding:'2px'}}
-                        />
-                        
-                       {props.activeDotTop && (  <div className={`dot ${props.size === 'smallest' ? 'top-dot-smallest' : props.size === 'small' ? 'top-dot-sm' : props.size === 'medium' ? 'top-dot-md' : props.size === 'large' ? 'top-dot-lg' : props.size === 'largest' ? 'top-dot-largest' : ''} bg-${props.colorVariant}`}></div>)}
-                       {props.activeDotBottom && (  <div className={`dot ${props.size === 'smallest' ? 'bottom-dot-smallest' : props.size === 'small' ? 'bottom-dot-sm' : props.size === 'medium' ? 'bottom-dot-md' : props.size === 'large' ? 'bottom-dot-lg' : props.size === 'largest' ? 'bottom-dot-largest' : ''} bg-${props.colorVariant}`}></div>)}                       
-                    </div>
+                    {props.type === "initials" ? (
+                        <div className={`d-flex justify-content-center bg-light align-items-center avatar rounded-circle ${classes()}`}>
+                            <div className="avatar-initials flex-shrink-0 d-flex align-items-center">
+                                <div className="fw-bold">
+                                {fLetter}
+                                {lLetter}
+                                </div>
+                                
+                           {props.activeDotTop && (  <div className={`dot ${props.size === 'smallest' ? 'top-dot-smallest' : props.size === 'small' ? 'top-dot-sm' : props.size === 'medium' ? 'top-dot-md' : props.size === 'large' ? 'top-dot-lg' : props.size === 'largest' ? 'top-dot-largest' : ''} bg-${props.colorVariant}`}></div>)}
+                           {props.activeDotBottom && (  <div className={`dot ${props.size === 'smallest' ? 'bottom-dot-smallest' : props.size === 'small' ? 'bottom-dot-sm' : props.size === 'medium' ? 'bottom-dot-md' : props.size === 'large' ? 'bottom-dot-lg' : props.size === 'largest' ? 'bottom-dot-largest' : ''} bg-${props.colorVariant}`}></div>)}       
+                            </div>
+                        </div>
+                        ) : props.type === "icon" ? (
+                            <div className={`d-flex justify-content-center align-items-center avatar rounded-circle ${classes()}`}>
+                            <RdsIcon
+                            name="user_identity"
+                            fill={false}
+                            stroke={false}
+                            height={iconSize.height}
+                            width={iconSize.width}
+                        ></RdsIcon>
+                        {props.activeDotTop && (  <div className={`dot ${props.size === 'smallest' ? 'top-dot-smallest' : props.size === 'small' ? 'top-dot-sm' : props.size === 'medium' ? 'top-dot-md' : props.size === 'large' ? 'top-dot-lg' : props.size === 'largest' ? 'top-dot-largest' : ''} bg-${props.colorVariant}`}></div>)}
+                        {props.activeDotBottom && (  <div className={`dot ${props.size === 'smallest' ? 'bottom-dot-smallest' : props.size === 'small' ? 'bottom-dot-sm' : props.size === 'medium' ? 'bottom-dot-md' : props.size === 'large' ? 'bottom-dot-lg' : props.size === 'largest' ? 'bottom-dot-largest' : ''} bg-${props.colorVariant}`}></div>)}       
+                            </div>
+                        ) : (
+                            <div className={`flex-grow-0 align-items-center ${Aligned}`} style={{ position: "relative" }}>
+                            <img
+                                src={withPP}
+                                className={classes()}
+                                alt="profile-default"
+                                style={{padding:'2px'}}
+                            />
+                            
+                           {props.activeDotTop && (  <div className={`dot ${props.size === 'smallest' ? 'top-dot-smallest' : props.size === 'small' ? 'top-dot-sm' : props.size === 'medium' ? 'top-dot-md' : props.size === 'large' ? 'top-dot-lg' : props.size === 'largest' ? 'top-dot-largest' : ''} bg-${props.colorVariant}`}></div>)}
+                           {props.activeDotBottom && (  <div className={`dot ${props.size === 'smallest' ? 'bottom-dot-smallest' : props.size === 'small' ? 'bottom-dot-sm' : props.size === 'medium' ? 'bottom-dot-md' : props.size === 'large' ? 'bottom-dot-lg' : props.size === 'largest' ? 'bottom-dot-largest' : ''} bg-${props.colorVariant}`}></div>)}                       
+                        </div>
+                            )}
+                   
                     {avtarWithName && (
-                         <span className={`avatar-initials flex-grow-1 align-items-center ms-2 fw-bold text-decoration-none ${props.size === 'smallest' ? 'textTopSmall' : props.size === 'small' ? 'textTopSm' : props.size === 'medium' ? 'textTopMd' : props.size === 'large' ? 'textTopLg' : props.size === 'largest' ? 'textTopLarge' : ''}` + profileName()} >
+                         <span className={`avatar-initials flex-grow-1 align-items-center ms-2 fw-bold text-decoration-none ${(props.type ==="initials"|| props.type === "icon" )? "ps-2":""}  ${props.size === 'smallest' ? 'textTopSmall' : props.size === 'small' ? 'textTopSm' : props.size === 'medium' ? 'textTopMd' : props.size === 'large' ? 'textTopLg' : props.size === 'largest' ? 'textTopLarge' : ''}` + profileName()} >
                          <div>
                              <span>{titleFirstName}{titleLastName}</span>
                              <p className="mb-0 text-muted">

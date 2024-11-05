@@ -98,3 +98,4 @@ export { default as RdsLoader } from "./rds-loader";
 export { default as RdsDivider } from "./rds-divider";
 export { default as TimePicker } from "./time-picker";
 export { default as RdsButtonGrid } from "./rds-button-grid";
+export { default as RdsHeader } from "./rds-header";

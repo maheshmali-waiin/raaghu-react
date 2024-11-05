@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import RdsButtonGrid, { ButtonInput } from "../rds-button-Grid/rds-button-Grid";
+import RdsButtonGrid, { ButtonInput } from "../rds-button-grid/rds-button-grid";
 
 const meta: Meta = {
     title: "Elements/Button Grid",

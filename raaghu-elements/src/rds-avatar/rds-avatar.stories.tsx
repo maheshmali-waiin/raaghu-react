@@ -38,6 +38,10 @@ const meta: Meta = {
             options: ["smallest","small", "medium", "large","largest"],
             control: { type: "radio" },
         },
+        type: {
+            options: ["image", "initials","icon"],
+            control: { type: "select" },
+        },
     },
 } satisfies Meta<typeof RdsAvatar>;
 
@@ -117,14 +121,10 @@ withProfile.argTypes = textAlignArgTypes;
 export const Avatar_Only: Story = {
     args: {
         size: "large",
-        withProfilePic: false,
         avtarOnly: true,
-        avtarWithName: false,
         activeDotTop: true,
         activeDotBottom: true,
         activityChain : true,
-        nameOnBottom: false,
-        stackingAvatar: false,
         firstName: "Wai",
         lastName: "Technologies",
         titleAlign: "horizontal",
@@ -139,36 +139,29 @@ Avatar_Only.parameters = { controls: { include: ['size', 'titleAlign', 'profileP
 export const Avatar_With_Name: Story = {
     args: {
         size: "large",
-        withProfilePic: false,
-        avtarOnly: false,
         avtarWithName: true,
         activeDotTop: true,
         activeDotBottom: true,
         activityChain : true,
-        nameOnBottom: false,
-        stackingAvatar: false,
         firstName: "Wai",
         lastName: "Technologies",
         titleAlign: "horizontal",
         role: "Developer",
         colorVariant: "primary",
+        type: "image",
         profilePic:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJxA5cTf-5dh5Eusm0puHbvAhOrCRPtckzjA&usqp=CAU",
     }
 } satisfies Story;
-Avatar_With_Name.parameters = { controls: { include: ['size', 'firstName', 'lastName', 'titleAlign', 'role', 'profilePic','colorVariant','activeDotTop','activeDotBottom','activityChain'] } };
+Avatar_With_Name.parameters = { controls: { include: ['size', 'firstName', 'lastName', 'titleAlign', 'role', 'profilePic','colorVariant','activeDotTop','activeDotBottom','activityChain','type'] } };
 
 export const Name_On_Bottom: Story = {
     args: {
         size: "large",
-        withProfilePic: false,
-        avtarOnly: false,
-        avtarWithName: false,
         activeDotTop: true,
         activeDotBottom: true,
         activityChain : true,
         nameOnBottom: true,
-        stackingAvatar: false,
         firstName: "Wai",
         lastName: "Technologies",
         titleAlign: "horizontal",
@@ -191,9 +184,6 @@ const avatars = [
 export const Stacking_Avatar_Only: Story = {
     args: {
         size: "large",
-        withProfilePic: false,
-        avtarWithName: false,
-        nameOnBottom: false,
         stackingAvatar: true,
         titleAlign: "horizontal",
         maxVisibleAvatars: 3,

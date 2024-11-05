@@ -522,10 +522,13 @@ const RdsCompDatatable = (props: RdsCompDatatableProps) => {
                                         </ul>
                                       </div>
                                       )}
-                                      {( actionColumnStyle==="show buttons directly"  && <div className="mx-1">
-                                      
+                                         {actionColumnStyle === "show buttons directly" && (
+                                        <div className="d-flex flex-wrap align-items-center justify-content-center mx-1" id="action_column">
                                           {totalActions?.map((action, actionIndex) => (
-                                            <button key={"action-" + actionIndex + "-inside-tableRow" + tableDataRow.id} className="btn text-primary border-primary mx-2">
+                                            <button
+                                              key={"action-" + actionIndex + "-inside-tableRow" + tableDataRow.id}
+                                              className="btn btn-outline-primary mx-2 my-1"
+                                            >
                                               {action.modalId && (
                                                 <a
                                                   data-bs-toggle="modal"
@@ -558,7 +561,7 @@ const RdsCompDatatable = (props: RdsCompDatatableProps) => {
                                               )}
                                             </button>
                                           ))}
-                                      </div>
+                                        </div>
                                       )}
                                     </>
                                   ) : (
@@ -974,44 +977,49 @@ const RdsCompDatatable = (props: RdsCompDatatableProps) => {
                                           ))}
                                         </ul>
                                       </div>)}
-                                      {( actionColumnStyle==="show buttons directly"  && <div className="mx-1">
-                                      
-                                      {totalActions?.map((action, actionIndex) => (
-                                        <button key={"action-" + actionIndex + "-inside-tableRow" + tableDataRow.id} className="btn text-primary border-primary mx-2">
-                                          {action.modalId && (
-                                            <a
-                                              data-bs-toggle="modal"
-                                              data-bs-target={`#${action?.modalId}`}
-                                              aria-controls={action?.modalId}
-                                              onClick={(e) => actionOnClickHandler(e, tableDataRow, tableDataRow.id, action)}
-                                              className="dropdown-item"
+                                      <div>
+                                      {actionColumnStyle === "show buttons directly" && (
+                                        <div className="d-flex align-items-center justify-content-center mx-1"  id="action_column">
+                                          {totalActions?.map((action, actionIndex) => (
+                                            <button
+                                              key={"action-" + actionIndex + "-inside-tableRow" + tableDataRow.id}
+                                              className="btn btn-outline-primary mx-1 my-1"
                                             >
-                                              {action.displayName}
-                                            </a>
-                                          )}
-                                          {action.offId && (
-                                            <a
-                                              data-bs-toggle="offcanvas"
-                                              data-bs-target={`#${action?.offId}`}
-                                              aria-controls={action?.offId}
-                                              onClick={(e) => actionOnClickHandler(e, tableDataRow, tableDataRow.id, action)}
-                                              className="dropdown-item"
-                                            >
-                                              {action.displayName}
-                                            </a>
-                                          )}
-                                          {action.offId == undefined && action.modalId == undefined && (
-                                            <a
-                                              onClick={(e) => actionOnClickHandler(e, tableDataRow, tableDataRow.id, action)}
-                                              className="dropdown-item"
-                                            >
-                                              {action.displayName}
-                                            </a>
-                                          )}
-                                        </button>
-                                      ))}
-                                  </div>
-                                  )}
+                                              {action.modalId && (
+                                                <a
+                                                  data-bs-toggle="modal"
+                                                  data-bs-target={`#${action?.modalId}`}
+                                                  aria-controls={action?.modalId}
+                                                  onClick={(e) => actionOnClickHandler(e, tableDataRow, tableDataRow.id, action)}
+                                                  className="dropdown-item"
+                                                >
+                                                  {action.displayName}
+                                                </a>
+                                              )}
+                                              {action.offId && (
+                                                <a
+                                                  data-bs-toggle="offcanvas"
+                                                  data-bs-target={`#${action?.offId}`}
+                                                  aria-controls={action?.offId}
+                                                  onClick={(e) => actionOnClickHandler(e, tableDataRow, tableDataRow.id, action)}
+                                                  className="dropdown-item"
+                                                >
+                                                  {action.displayName}
+                                                </a>
+                                              )}
+                                              {action.offId == undefined && action.modalId == undefined && (
+                                                <a
+                                                  onClick={(e) => actionOnClickHandler(e, tableDataRow, tableDataRow.id, action)}
+                                                  className="dropdown-item"
+                                                >
+                                                  {action.displayName}
+                                                </a>
+                                              )}
+                                            </button>
+                                          ))}
+                                        </div>
+                                      )}
+                                    </div>
                                     </>
                                   ) : (
                                     <div className="d-flex justify-content-center align-items-center w-60px">

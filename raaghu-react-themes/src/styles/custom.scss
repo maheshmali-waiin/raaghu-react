@@ -3292,3 +3292,14 @@ $btn-border-radius: $border-radius-xs !default;
         padding-left: 0.9rem !important;
     }
   }
+  .theme-dark .accordion-border {
+    border: 1px solid $primary !important;
+}
+.theme-dark .accordion-bottomline .accordion-header:not(.collapsed) {
+    border-bottom: 1px solid  !important;
+    border-color: $primary !important;
+}
+.theme-dark .accordion-item {
+    background: #292b30 !important;
+    color: #dee2e6 !important;
+}

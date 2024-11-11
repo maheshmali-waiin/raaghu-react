@@ -511,7 +511,15 @@ $nav-pills-bg-color: $dark-200 !default;
 .toast-header {
     background-color:transparent !important;
 }
-
+.bg-board {
+    background-color: rgba(
+  red($bg-neutral-dark-default),
+  green($bg-neutral-dark-default),
+  blue($bg-neutral-dark-default),
+  0.9
+);
+   
+}
 .close {
     stroke: $light-950;
 

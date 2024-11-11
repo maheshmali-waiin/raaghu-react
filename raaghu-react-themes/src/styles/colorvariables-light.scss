@@ -606,11 +606,22 @@ $accordion-border-color: $neutral-40 !default;
 $progress-bar-bg-primary:$bg-primary-dark-default;
 $progress-bar-bg-error:$bg-error-dark-default;
 
+   
+
 .progress-bar-bg-error{
     background-color: $progress-bar-bg-error;
 }
 .progress-bar-bg-primary{
     background-color: $progress-bar-bg-primary;
+}
+
+.bg-board {
+  background-color: rgba(
+  red($bg-neutral-lighter-default),
+  green($bg-neutral-lighter-default),
+  blue($bg-neutral-lighter-default),
+  0.8
+);
 }
 
 .accordion-bottomline {

@@ -151,7 +151,7 @@ const RdsDatepicker = (props: RdsDatepickerProps) => {
     return (
         <>
             {props.type === "default" && (
-                <><div className="mt-2">
+                <><div>
                     {props.DatePickerLabel && <label className="form-label">{props.DatePickerLabel}</label>}
                     <div className="input-group input-group-datePicker mb-3 mt-1">
                         {/* <div className="input-group-append datepicker__icon-box">
@@ -187,7 +187,7 @@ const RdsDatepicker = (props: RdsDatepickerProps) => {
                 </>
             )}
             {props.type === "advanced" && (
-                <><div className="mt-2">
+                <><div>
                     {props.DatePickerLabel && <label className="form-label">{props.DatePickerLabel}</label>}
                     <div className="dropdown border rounded justify-content-between text-start d-block datepicker mt-1">
                         <button
@@ -269,7 +269,7 @@ const RdsDatepicker = (props: RdsDatepickerProps) => {
                 </>
             )}
             {props.type === "withTime" && (
-                <><div className="mt-2">
+                <><div>
                     {props.DatePickerLabel && (
                         <label className="form-label">{props.DatePickerLabel}</label>
                     )}

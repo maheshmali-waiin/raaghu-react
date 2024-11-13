@@ -114,3 +114,4 @@ export { default as RdsCompRegisterMember } from "./rds-comp-register-member";
 export { default as RdsCompContribution } from "./rds-comp-contribution";
 
 export { default as RdsCompUserComments } from "./rds-comp-chat";
+export { default as RdsCompComponentTest } from "./rds-comp-component-test";

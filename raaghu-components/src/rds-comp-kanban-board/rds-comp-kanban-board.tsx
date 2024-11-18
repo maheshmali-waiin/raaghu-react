@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { RdsButton, RdsCheckbox, RdsDatePicker, RdsDropdownList, RdsLabel, RdsModal, RdsProgressBar } from "../rds-elements";
+import { RdsButton, RdsDropdownList, RdsLabel } from "../rds-elements";
 import { useState } from "react";
 import { RdsInput } from "../rds-elements";
 import { RdsIcon } from "../rds-elements";
@@ -31,12 +31,13 @@ export interface RdsCompKanbanBoardProps {
 
 const RdsCompKanbanBoard = (props: RdsCompKanbanBoardProps) => {
     const [boardName, setboardName] = useState("");
-    const [allowDynamicData, setAllowDynamicData] = useState(props.allowAddingDynamicData || false);
+    //const [allowDynamicData, setAllowDynamicData] = useState(props.allowAddingDynamicData || false);
     const [showAddBoardBtn, setShowAddBoardBtn] = useState(props.allowAddingDynamicData? false : true);
     const [addButton, setAddButton] = useState(props.allowAddingDynamicData ? true : false);
     const [showBoard, setShowBoard] = useState(true);
     const [isEditingBoardName, setIsEditingBoardName] = useState<boolean[]>(props.boardData ? props.boardData.map(() => false) : []);
 
+  
 
     const [boards, setBoards] = useState<
     {
@@ -58,6 +59,8 @@ const RdsCompKanbanBoard = (props: RdsCompKanbanBoardProps) => {
     useEffect(() => {
         setBoards(props.boardData);
     }, [props.boardData]);
+
+    console.log("boardData storybook -",props.boardData);
   
     const [isBoardDropdownOpen, setIsBoardDropdownOpen] = useState<boolean[]>(props.boardData ? props.boardData.map(() => false) : []);
     const [isSubCardDropdownOpen, setIsSubCardDropdownOpen] = useState<{
@@ -96,18 +99,12 @@ const RdsCompKanbanBoard = (props: RdsCompKanbanBoardProps) => {
       taskId: number;
     }[]
   >([]);
-    const [totalTasks, setTotalTasks] = useState(0);
-    const [completedTasks, setCompletedTasks] = useState(0);
 
     const priorityList = [
         { label: "High", val: "High"},
         { label: "Moderate", val: "Moderate"},
         { label: "Low", val: "Low" },
     ];
-
-    // useEffect(() => {
-    //     setboardName(props.boardName);
-    // }, [props.boardName]);
 
     const handleShowInputBox = () => {
         setShowAddBoardBtn(true);
@@ -189,7 +186,7 @@ const RdsCompKanbanBoard = (props: RdsCompKanbanBoardProps) => {
                     ? {
                         ...card,
                         subCards: card.subCards.filter(
-                            (subCard, j) => subCard.SubcardId !== subCardIndex
+                            (subCard) => subCard.SubcardId !== subCardIndex
                         ),
                     }
                     : card
@@ -403,7 +400,9 @@ const RdsCompKanbanBoard = (props: RdsCompKanbanBoardProps) => {
                     >
                         {showBoard && card.name && (
                             <div className="kanban-board">
-                                <RdsCard
+                                
+                                <RdsCard 
+                                    showTitle={true}
                                     cardTitle={
                                         <div className="row">
                                             <div className="col-md-8">
@@ -500,6 +499,7 @@ const RdsCompKanbanBoard = (props: RdsCompKanbanBoardProps) => {
                                                                     >
                                                                         <RdsCard
                                                                             key={subCard.SubcardId}
+                                                                            showTitle={true}
                                                                             cardTitle={
                                                                                 <>
                                                                                     <div className="row">
@@ -608,7 +608,7 @@ const RdsCompKanbanBoard = (props: RdsCompKanbanBoardProps) => {
                                                                 )}
                                                             </Draggable>
                                                         ))}
-                                                        {allowDynamicData && (<>
+                                                        {props.allowAddingDynamicData && (<>
                                                             {subCardInputsVisible === index ? (
                                                                 <div className="mt-1">
                                                                     <RdsInput
@@ -687,7 +687,7 @@ const RdsCompKanbanBoard = (props: RdsCompKanbanBoardProps) => {
                         )}
                     </div>
                 ))}
-                {allowDynamicData && (<>
+                {props.allowAddingDynamicData && (<>
                     {showAddBoardBtn && (
                         <div className="mx-2 mt-2 add-board">
                             <div className="col-md-12">

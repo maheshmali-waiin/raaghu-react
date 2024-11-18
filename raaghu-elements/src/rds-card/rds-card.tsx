@@ -12,9 +12,9 @@ export interface RdsCardProps {
     buttonLabel1?: string;
     buttonLabel2?: string;
     colorVariant?: colors;
-    cardTitle?: string;
+    cardTitle?: React.ReactNode;
     cardSubTitle?: string;
-    cardText?: string;
+    cardText?: React.ReactNode;
     showFooter?: boolean;
     showTitle?: boolean;
     showSubTitle?: boolean;
@@ -133,8 +133,8 @@ const RdsCard = (props: RdsCardProps) => {
               )}
             </>
           )}
-        </div>
-        {props.showTitle === false && props.showSubTitle === false && props.showCalender === true && (
+
+{props.showTitle === false && props.showSubTitle === false && props.showCalender === true && (
           <div className="headerClass mt-3 ms-3">
             <div className="d-flex align-items-center">
             {props.iconShow && (
@@ -308,6 +308,8 @@ const RdsCard = (props: RdsCardProps) => {
             </div>
           )}
        </div> )}
+        </div>
+        
       </div>
     </Fragment>
   );

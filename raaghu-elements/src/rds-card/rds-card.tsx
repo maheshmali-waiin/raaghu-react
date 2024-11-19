@@ -49,7 +49,7 @@ const RdsCard = (props: RdsCardProps) => {
   const renderTitleAndSubtitle = () => (
     <>
       {props.showTitle && (
-        <h5 className={`${isCenter ? "" : "mt-3"}`}>
+        <h5 className={` "mb-0" ${isCenter ? "" : props.iconShow ? "mt-3" : ""}`}>
           {props.cardTitle}
         </h5>
       )}
@@ -79,7 +79,7 @@ const RdsCard = (props: RdsCardProps) => {
           props.state === "Hovered" ? "card-hovered" : ""
         } ${props.state === "Selected" ? "card-selected" : ""}`}
       >
-        <div className="headerClass">
+        <div className="headerClass mx-3 mt-3 ">
           {props.isImage === true ? (
             <div className="position-relative">
               <img
@@ -134,7 +134,7 @@ const RdsCard = (props: RdsCardProps) => {
             </>
           )}
 
-{props.showTitle === false && props.showSubTitle === false && props.showCalender === true && (
+        {props.showTitle === false && props.showSubTitle === false && props.showCalender === true && (
           <div className="headerClass mt-3 ms-3">
             <div className="d-flex align-items-center">
             {props.iconShow && (
@@ -147,7 +147,7 @@ const RdsCard = (props: RdsCardProps) => {
                 width="20px"
               />
             )}
-              <h6 className="ms-2 mb-0">
+              <h6  className="ms-2 mb-0">
                 <label className="text-muted">{props.title}</label>
               </h6>
             </div>
@@ -156,49 +156,7 @@ const RdsCard = (props: RdsCardProps) => {
             </span>
           </div>
         )}
-        {props.showTitle === false && props.showSubTitle === false ? (
-          props.showFooter === true && (
-            <div
-            className={`card-footer ${
-              props.style === "Filled" ? "card-filled" : ""
-            } ${
-              props.isDisabled || props.state === "Disabled"
-                ? "card-disabled"
-                : ""
-            } ${props.state === "Hovered" ? "card-hovered" : ""} ${
-              props.state === "Selected" ? "card-selected" : ""
-            }`}
-          >
-            {props.showLinkButton === true && (
-              <div>
-                <RdsButton class="btn-link" label={props.buttonLabel1 + " >"} />
-                <br />
-                <RdsButton class="btn-link" label={props.buttonLabel2 + " >"} />
-              </div>
-            )}
-            {props.showLinkButton === false && (
-              <div
-                className="d-flex justify-content-between align-items-center"                
-              >
-                {props.showFooterLabel === true && (
-                <label className={` fs-4 fw-medium text-${props.colorVariant}`}  >{props.footerLabelText}</label>
-                )}
-                {props.showFooterButton === true && (
-                <div>
-                  <RdsButton
-                    label={props.buttonLabel1}
-                    colorVariant={props.colorVariant}
-                  ></RdsButton>
-                </div>
-                )}
-              </div>
-            )}
-          </div>
-          )
-        ) : (
-          <div>
-          <div className="card-body">
-            {props.titlePosition === "bottom" && (
+        {props.titlePosition === "bottom" && (
               <>
                 {props.iconShow && (
                   <RdsIcon
@@ -265,10 +223,55 @@ const RdsCard = (props: RdsCardProps) => {
                 {renderTitleAndSubtitle()}
               </>
             )}
-            <br />
+        </div>
+        {props.showTitle === false && props.showSubTitle === false ? (
+          props.showFooter === true && (
+            <div
+            className={`card-footer ${
+              props.style === "Filled" ? "card-filled" : ""
+            } ${
+              props.isDisabled || props.state === "Disabled"
+                ? "card-disabled"
+                : ""
+            } ${props.state === "Hovered" ? "card-hovered" : ""} ${
+              props.state === "Selected" ? "card-selected" : ""
+            }`}
+          >
+            {props.showLinkButton === true && (
+              <div>
+                <RdsButton class="btn-link" label={props.buttonLabel1 + " >"} />
+                <br />
+                <RdsButton class="btn-link" label={props.buttonLabel2 + " >"} />
+              </div>
+            )}
+            {props.showLinkButton === false && (
+              <div
+                className="d-flex justify-content-between align-items-center"                
+              >
+                {props.showFooterLabel === true && (
+                <label className={` fs-4 fw-medium text-${props.colorVariant}`}  >{props.footerLabelText}</label>
+                )}
+                {props.showFooterButton === true && (
+                <div>
+                  <RdsButton
+                    label={props.buttonLabel1}
+                    colorVariant={props.colorVariant}
+                  ></RdsButton>
+                </div>
+                )}
+              </div>
+            )}
+          </div>
+          )
+        ) : (
+          <div>
+          <div className="card-body">
+           
             <p>{props.cardText}</p>
           </div>
-          {props.showFooter === true && (
+          
+       </div> )}
+        {props.showFooter === true && (
             <div
               className={`card-footer ${
                 props.style === "Filled" ? "card-filled" : ""
@@ -307,9 +310,6 @@ const RdsCard = (props: RdsCardProps) => {
               )}
             </div>
           )}
-       </div> )}
-        </div>
-        
       </div>
     </Fragment>
   );

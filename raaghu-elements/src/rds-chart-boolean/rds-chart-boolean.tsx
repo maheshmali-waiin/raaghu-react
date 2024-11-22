@@ -7,10 +7,8 @@ export interface RdsBooleanChartProps {
     labels: any[];
     options: any;
     dataSets: any[];
-    width?: number;
     chartStyle?: string;
     id: string;
-    height?: number;
     centerIconName?: string;
 }
 
@@ -51,11 +49,6 @@ const RdsBooleanChart = (props: RdsBooleanChartProps) => {
                 },
                 options: props.options,
             });
-
-            if (boolCanvas !== null) {
-                boolCanvas.canvas.style.height = `${props.height}px`;
-                boolCanvas.canvas.style.width = `${props.width}px`;
-            }
 
             return () => {
                 boolCanvas.destroy();

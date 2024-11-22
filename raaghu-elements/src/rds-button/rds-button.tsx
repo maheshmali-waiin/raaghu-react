@@ -18,8 +18,7 @@ const RdsButton = (props: RdsButtonProps) => {
             }
         }
         if (props.showLoadingSpinner) {
-
-            setSpinnerClass(" spinner disabled ");
+            setSpinnerClass(" spinner");
             setTurnSpinnerOff(1);
 
             setTimeout(() => {
@@ -28,7 +27,6 @@ const RdsButton = (props: RdsButtonProps) => {
             }, 2000);
         }
         props.onClick != undefined && props.onClick(evt);
-
     };
 
     const classesButton = () => {
@@ -59,6 +57,9 @@ const RdsButton = (props: RdsButtonProps) => {
         }
         if (props.class === " btn-link ") {
             defaultClass = defaultClass + " btn-link ";
+        }
+        if(props.colorVariant === "light" && props.isBanerButton){
+            defaultClass = defaultClass + " text-primary border-primary";
         }
         return defaultClass;
     };

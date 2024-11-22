@@ -323,8 +323,10 @@ const RdsSideNav = (props: RdsSideNavProps) => {
                             props.toggleClass ? " show" : " hide"
                         } ${collapse ? "toggle-sidebar-menu show" : "toggle"}`}
                     >
-                        <span className="collpase-button cursor-pointer d-flex lock-icon">
-                            <RdsIcon
+                        <span className="collpase-button cursor-pointer d-flex lock-icon"
+                            onMouseEnter={(e) => e.stopPropagation()}
+                            onMouseLeave={(e) => e.stopPropagation()}>
+                                <RdsIcon
                                 name={!isLocked ? "unlock" : "lock_nav"}
                                 height="21px"
                                 width="21px"

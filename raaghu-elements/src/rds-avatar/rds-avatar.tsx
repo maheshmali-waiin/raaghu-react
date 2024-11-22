@@ -284,7 +284,7 @@ const RdsAvatar = (props: RdsAvatarProps) => {
               <img
                 src={withPP}
                 className={
-                  `avatar rounded-circle ` + classes() + getBorderClasses(props.border)
+                  `avatar-sm rounded-circle ` + classes() + getBorderClasses(props.border)
                 }
                 alt="profile"
               />

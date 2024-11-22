@@ -120,6 +120,7 @@ export const TextWithIcon: Story = {
     }
 } satisfies Story;
 TextWithIcon.parameters = { controls: { include: ["colorVariant", "label", "block", "size", "showLoadingSpinner", "icon","isRoundedButton"] } };
+
 export const RoundedButton: Story = {
     args: {
         colorVariant: "primary",
@@ -131,11 +132,11 @@ export const RoundedButton: Story = {
     }
 } satisfies Story;
 RoundedButton.parameters = { controls: { include: ["colorVariant", "label", "block", "size", "showLoadingSpinner"] } };
+
 export const LinkButton: Story = {
     args: {
         class : "btn-link",
-        label : "Link Button",
-      
+        label : "Link Button",      
     }
 } satisfies Story;
 LinkButton.parameters = { controls: { include: ["colorVariant", "label", "block", "size", "showLoadingSpinner","isRoundedButton"] } };

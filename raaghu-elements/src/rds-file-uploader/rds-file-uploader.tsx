@@ -47,58 +47,59 @@ const RdsFileUploader = (props: RdsFileUploaderProps) => {
       ? "form-control-lg"
       : "";
 
-  const onchangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files || []);
-    setSelectedFiles(files);
-    const allowedExtensions = props.extensions.split(", ");
-    const newFiles: File[] = [];
-    const newValidation: { isError: boolean; hint: string }[] = [];
-
-    files.forEach((file) => {
-      const fileExtension = file.name.split(".").pop()?.toLowerCase();
-      if (!allowedExtensions.includes(fileExtension || "")) {
-        newFiles.push(file);
-        newValidation.push({
-          isError: true,
-          hint: `File with extension '${fileExtension}' is not allowed`,
+      const onchangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(event.target.files || []);
+        const allowedExtensions = props.extensions.split(", ");
+        const newFiles: File[] = [];
+        const newValidation: { isError: boolean; hint: string }[] = [];
+      
+        files.forEach((file) => {
+          const fileExtension = file.name.split(".").pop()?.toLowerCase();
+          if (!allowedExtensions.includes(fileExtension || "")) {
+            newValidation.push({
+              isError: true,
+              hint: `File with extension '${fileExtension}' is not allowed`,
+            });
+            return;
+          }
+      
+          const fileSizeInMB = file.size / (1024 * 1024); // Convert size to MB
+          if (props.fileSizeLimitInMb != null && fileSizeInMB > props.fileSizeLimitInMb) {
+            newValidation.push({
+              isError: true,
+              hint: "File size exceeds the limit",
+            });
+            return;
+          }
+      
+          newFiles.push(file);
         });
-        return;
-      }
-
-      const fileSizeInMB = file.size / (1024 * 1024); // Convert size to MB
-      if (props.fileSizeLimitInMb != null) {
-        if (fileSizeInMB > props.fileSizeLimitInMb) {
-          newValidation.push({
-            isError: true,
-            hint: "File size exceeds the limit",
-          });
-          return;
+      
+        if (props.multiple) {
+          setSelectedFiles((prevFiles) => [...prevFiles, ...newFiles]);
+        } else {
+          setSelectedFiles(newFiles.slice(-1)); // only keep the last selected file
         }
-      }
-
-      newFiles.push(file);
-    });
-
-    setSelectedFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    setValidation(newValidation);
-
-    props.getFileUploaderInfo &&
-      props.getFileUploaderInfo({
-        files: newFiles,
-      });
-
-    if (props.Drop_Area_Top_Icon) {
-      event.target.value = "";
-    }
-    if (newFiles.length > 0) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        
-        setAvatarImage(e.target?.result as string);
-      };
-      reader.readAsDataURL(newFiles[0]);
-    }
-  };
+      
+        setValidation(newValidation);
+      
+        props.getFileUploaderInfo &&
+          props.getFileUploaderInfo({
+            files: newFiles,
+          });
+      
+        if (props.Drop_Area_Top_Icon) {
+          event.target.value = "";
+        }
+      
+        if (newFiles.length > 0) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            setAvatarImage(e.target?.result as string);
+          };
+          reader.readAsDataURL(newFiles[0]);
+        }
+      };      
 
   const onDelete = (index: number) => {
     const newFiles = selectedFiles.filter((_, i) => i !== index);
@@ -323,7 +324,7 @@ const RdsFileUploader = (props: RdsFileUploaderProps) => {
             } ${size}`}
           >
             <div
-              className={`col-md-12 col-lg-12 col-12 d-flex align-items-center justify-content-between ${
+              className={`col-md-12 col-lg-12 col-12 d-flex align-items-center justify-content-between cursor-pointer ${
                 dragging ? "dragging" : ""
               }`}
               onDragOver={handleDragOver}
@@ -568,7 +569,7 @@ const RdsFileUploader = (props: RdsFileUploaderProps) => {
             <div className={`align-items-center d-flex mt-1 flex-row`}>
               <label
                 htmlFor="drop-area-with-icon"
-                className={`border-end-0 align-items-center custom-file-button-rounded ${size}`}
+                className={`border-end-0 align-items-center custom-file-button-rounded cursor-pointer ${size}`}
               >
                   
                   {props.profilePic ? (
@@ -621,68 +622,84 @@ const RdsFileUploader = (props: RdsFileUploaderProps) => {
       );
     }
 
-    return (
-      <div className="">
-        <div>
-          {props.showTitle && (
-            <label className={"form-label label-gray"}>
-              {props.title}
-              {props.isRequired && <span className="text-danger ml-1">*</span>}
-            </label>
-          )}
-        </div>
-        <div>
-          <form>
-            <div className={`align-items-center d-flex mt-1 flex-row`}>
-              <label
-                htmlFor="file1"
-                className={`border-end-0 align-items-center custom-file-button-rounded ${size}`}
-              >
-                  
-                  {props.profilePic ? (
-                  <RdsAvatar
-                  profilePic={props.profilePic} // Ensure avatarImage is a string
-                  size="largest"
-                  border="dashed"
-                  />
-                ) : (
-                  <RdsAvatar iconName="edit"  size="largest" border="dashed" />
-                )}
-              </label>
-
-              <input
-                ref={fileInputRef}
-                data-testid="rds-file-uploader-input"
-                className={`col-md-12 input mulinput d-none text-${props.colorVariant}`}
-                type="file"
-                id="file1"
-                accept={props.extensions}
-                onChange={onChangeHandlerForSingleSelection}
-                multiple={false}
-                required={props.isRequired ? true : false}
-              />
-            </div>
-            <div className="d-flex justify-content-between">
+      return (
+          <div className="">
               <div>
-                {" "}
-                {validation &&
-                  validation.map((val: any, index: number) => (
-                    <div key={index} className="">
-                      <small
-                        className={`${
-                          val.isError ? "showError" : "noError d-none"
-                        }`}
-                      >
-                        {val.isError && val.hint}
-                      </small>
-                    </div>
-                  ))}
+                  {props.showTitle && (
+                      <label className={"form-label label-gray"}>
+                          {props.title}
+                          {props.isRequired && <span className="text-danger ml-1">*</span>}
+                      </label>
+                  )}
               </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    );
+              <div>
+                  <form>
+                      <div
+
+                          className={`align-items-center d-flex mt-1 flex-row`}
+                      >
+                          <label
+                              htmlFor="file1"
+                              className={`border-end-0 align-items-center custom-file-button ${size}`}
+                          >
+                              Choose File
+                          </label>
+                          <span
+                              className={`chosenFileSpan deleteOptionCss ps-3 small-placeholder ${size}`}
+                          >
+                              {selectedFiles.length > 0
+                                  ? selectedFiles[0].name
+                                  : "No file chosen"}
+                              {selectedFiles.length > 0 && (
+                                  <span
+                                      className="iconbox ms-2"
+                                      onClick={() => onDeleteHandlerForSingleSelection()}
+                                  >
+                                      <RdsIcon
+                                          colorVariant="danger"
+                                          name={"delete"}
+                                          height="16px"
+                                          width="16px"
+                                          stroke={true}
+                                          fill={false}
+                                      />
+                                  </span>
+                              )}
+                          </span>
+                          <input
+                              ref={fileInputRef}
+                              data-testid="rds-file-uploader-input"
+                              className={`col-md-12 input mulinput d-none text-${props.colorVariant}`}
+                              type="file"
+                              id="file1"
+                              accept={props.extensions}
+                              onChange={onChangeHandlerForSingleSelection}
+                              multiple={false}
+                              required={props.isRequired ? true : false}
+                          />
+                      </div>
+                      <div className="d-flex justify-content-between">
+                          <div> {validation &&
+                              validation.map((val: any, index: number) => (
+
+                                  <div key={index} className="">
+                                      <small
+                                          className={`${val.isError ? "showError" : "noError d-none"
+                                              }`}
+                                      >
+                                          {val.isError && val.hint}
+                                      </small>
+                                  </div>
+                              ))}</div>
+                          {props.showHint && (
+                              <div className="d-flex justify-content-start text-muted mt-1">
+                                  <small>{props.hintText}</small>
+                              </div>
+                          )}</div>
+                  </form>
+              </div>
+          </div>
+      );
   };
 
   return <>{renderFileUploader()}</>;

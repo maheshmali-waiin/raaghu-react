@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import TruncatedText, { RdsTruncateTextProps } from './rds-truncate-text';
 
 export default {
-        title: 'Elements/TruncatedText',
+        title: 'Elements/Truncated Text',
         component: TruncatedText,
         parameters: {
                 docs: {

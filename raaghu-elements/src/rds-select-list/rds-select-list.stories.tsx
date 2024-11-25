@@ -36,19 +36,19 @@ export const Default: Story = {
         placeholder: "Select label",
         selectItems: [
             {
-                label: "One",
+                option: "One",
                 value: "one"
             },
             {
-                label: "two",
+                option: "two",
                 value: "two"
             },
             {
-                label: "three",
+                option: "three",
                 value: "three"
             },
             {
-                label: "four",
+                option: "four",
                 value: "four"
             }
 
@@ -72,19 +72,19 @@ export const Multiple: Story = {
         placeholder: "Select label",
         selectItems: [
             {
-                label: "One",
+                option: "One",
                 value: "one"
             },
             {
-                label: "two",
+                option: "two",
                 value: "two"
             },
             {
-                label: "three",
+                option: "three",
                 value: "three"
             },
             {
-                label: "four",
+                option: "four",
                 value: "four"
             }
 
@@ -109,42 +109,42 @@ export const WithIcon: Story = {
         placeholder: "placeholder",      
         selectItems: [
             {
-                label: "Riya Sharma",
+                option: "Riya Sharma",
                 value: "Riya",
                 imgUrl: "https://th.bing.com/th/id/OIP.dmCI62ZlmvIp1yxyBVSAxAHaHP?w=567&h=555&rs=1&pid=ImgDetMain",
                 imgWidth: "30px",
                 imgHeight: "30px",
             },
             {
-                label: "John Doe",
+                option: "John Doe",
                 value: "John",
                 imgUrl: "https://i.vimeocdn.com/portrait/20107774_640x640",
                 imgWidth: "30px",
                 imgHeight: "30px",
             },
             {
-                label: "Richard P",
+                option: "Richard P",
                 value: "Richard",
                 imgUrl: "https://www.mockofun.com/wp-content/uploads/2019/12/circle-profile-pic-768x730.jpg",
                 imgWidth: "30px",
                 imgHeight: "30px",
             },
             {
-                label: "Alex Brown",
+                option: "Alex Brown",
                 value: "Alex",
                 imgUrl: "https://i0.wp.com/studio.ameliate.com/wp-content/uploads/2021/01/Michele-Oval-Edited-768x768-1.png?w=760&ssl=1",
                 imgWidth: "30px",
                 imgHeight: "30px",
             },
             {
-                label: "Chris Johnson",
+                option: "Chris Johnson",
                 value: "Chris",
                 imgUrl: "",
                 imgWidth: "30px",
                 imgHeight: "30px",
             },
             {
-                label: "Elizabeth Diva",
+                option: "Elizabeth Diva",
                 value: "Elizabeth",
                 imgUrl: "https://th.bing.com/th/id/OIP.GmUT02hCOJSpUjLmUtV5hAHaHa?rs=1&pid=ImgDetMain",
                 imgWidth: "30px",

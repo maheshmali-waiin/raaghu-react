@@ -95,6 +95,7 @@ const isFormValid=isTitleValid(data?.title) && isSlugValid(data?.slug) ;
                         activeNavtabOrder={handleractiveNavtabOrder}
                         activeNavTabId={"content"}
                         fill={false}
+                        style="Bottom Select"
                         navtabsItems={[
                             {
                                 label: "Content",

@@ -144,64 +144,64 @@ const RdsAlert = (props: RdsAlertProps) => {
                     </>
                 )}
       
-        {props.displayType == "multiline" && (
-        <>
-            <span className="custom-alert-message wordbreak d-flex align-items-center flex-column flex-md-row">
-                {props.icon && (
-                    <div className="align-items-center" id="rdicon">
-                        <RdsIcon
-                            name={props.icon || " "}
-                            fill={props.iconFill}
-                            stroke={props.iconStroke}
-                            height={props.iconHeight}
-                            width={props.iconWidth}
-                            colorVariant={colorType}
-                            classes="me-2 pt-3 "
-                        />
-                    </div>
-                )}
+                {props.displayType == "multiline" && (
+                    <>
+                        <span className="custom-alert-message wordbreak d-flex align-items-center flex-column flex-md-row">
+                            {props.icon && (
+                                <div className="align-items-center" id="rdicon">
+                                    <RdsIcon
+                                        name={props.icon || " "}
+                                        fill={props.iconFill}
+                                        stroke={props.iconStroke}
+                                        height={props.iconHeight}
+                                        width={props.iconWidth}
+                                        colorVariant={colorType}
+                                        classes="me-2 pt-3 "
+                                    />
+                                </div>
+                            )}
 
-                <div className="flex-grow-1">
-                    {props.title && <strong>{props.title}</strong>}
-                    {props.message}
-                    <p>{props.description}</p>
-                    {props.showlink === true && (
-                        <a className="text-decoration-underline d-block mt-2 mt-md-4" href="#"  id="alertlinks">
-                            Link
-                        </a>
-                    )}
-                </div>
-            </span>
-            <span>
-                <div className="d-flex align-items-top justify-content-end gap-2 alert-close pe-2">
-                    {props.dismisable === true && (
-                        <RdsIcon
-                            colorVariant="primary"
-                            name="close"
-                            stroke={true}
-                            height="12px"
-                            width="12px"
-                            onClick={(e: any) => closeHandler(e)}
-                            isCursorPointer={true}
-                        />
-                    )}
-                </div>
-                <div className="d-flex align-items-flex-end mt-4 gap-2 alertBtns">
-                    {props.showbutton === true && (
-                        <button className="text-primary border-0 bg-transparent"> Cancel </button>
-                    )}
-                    {props.showbutton === true && (
-                        <RdsButton
-                            colorVariant="primary"
-                            onClick={(e: any) => closeHandler(e)}
-                            label="Okay"
-                            size="small"
-                        />
-                    )}
-                </div>
-            </span>
-        </>
-             )}
+                            <div className="flex-grow-1">
+                                {props.title && <strong>{props.title}</strong>}
+                                {props.message}
+                                <p>{props.description}</p>
+                                {props.showlink === true && (
+                                    <a className="text-decoration-underline d-block mt-2 mt-md-4" href="#"  id="alertlinks">
+                                        Link
+                                    </a>
+                                )}
+                            </div>
+                        </span>
+                        <span>
+                            <div className="d-flex align-items-top justify-content-end gap-2 alert-close pe-2">
+                                {props.dismisable === true && (
+                                    <RdsIcon
+                                        colorVariant="primary"
+                                        name="close"
+                                        stroke={true}
+                                        height="12px"
+                                        width="12px"
+                                        onClick={(e: any) => closeHandler(e)}
+                                        isCursorPointer={true}
+                                    />
+                                )}
+                            </div>
+                            <div className="d-flex align-items-flex-end mt-4 gap-2 alertBtns">
+                                {props.showbutton === true && (
+                                    <button className="text-primary border-0 bg-transparent"> Cancel </button>
+                                )}
+                                {props.showbutton === true && (
+                                    <RdsButton
+                                        colorVariant="primary"
+                                        onClick={(e: any) => closeHandler(e)}
+                                        label="Okay"
+                                        size="small"
+                                    />
+                                )}
+                            </div>
+                        </span>
+                    </>
+                )}
             </div>
         </>
     );

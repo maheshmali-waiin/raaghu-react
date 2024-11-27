@@ -926,11 +926,6 @@ svg {
     color: $white;
 }
 
-.accordion-header {
-    background: $accordion-bg;
-    border-color: $primary;
-}
-
 .accordion-item {
     background-color: $accordion-body-bg;
     border-color: $gray-600;
@@ -3175,9 +3170,6 @@ hr {
     margin-right: 10px !important;
   }
    
-  .collapsed-container .menu-item-collapsible-container span {
-   padding-left: 2px !important;
-  }
    
   .collapsed-container .menu-item-collapsible-container i {
     margin: 0 !important;

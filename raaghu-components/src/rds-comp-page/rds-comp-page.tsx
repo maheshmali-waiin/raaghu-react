@@ -95,6 +95,7 @@ const isFormValid=isTitleValid(data?.title) && isSlugValid(data?.slug) ;
                         activeNavtabOrder={handleractiveNavtabOrder}
                         activeNavTabId={"content"}
                         fill={false}
+                        style="Bottom Select"
                         navtabsItems={[
                             {
                                 label: "Content",
@@ -159,7 +160,7 @@ const isFormValid=isTitleValid(data?.title) && isSlugValid(data?.slug) ;
                 </div>
             </div>
 
-            <div className="footer-buttons pb-3 d-flex ps-4 flex-column-reverse flex-lg-row flex-md-column-reverse flex-xl-row flex-xxl-row flex-row gap-2">
+            <div className="footer-buttons pb-3 d-flex ps-4 flex-column-reverse flex-lg-row flex-md-column-reverse flex-xl-row flex-xxl-row flex-row gap-2 p-4">
                 <RdsButton
                     label="Cancel"
                     databsdismiss="offcanvas"

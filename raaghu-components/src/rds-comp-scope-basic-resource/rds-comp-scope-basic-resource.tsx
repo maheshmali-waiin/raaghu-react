@@ -82,7 +82,7 @@ const isFormValid=isNameValid(formData?.name);
                                 ></RdsInput>
                             </div>
                         </div>
-                        <div className="row mb-3">
+                        <div className="row mb-1">
                             <RdsCheckbox
                                 id="0"
                                 label="Enabled"
@@ -93,7 +93,7 @@ const isFormValid=isNameValid(formData?.name);
                                 dataTestId="enabled"
                             ></RdsCheckbox>
                         </div>
-                        <div className="row mb-3">
+                        <div className="row mb-1">
                             <RdsCheckbox
                                 id="0"
                                 label="Required"
@@ -104,7 +104,7 @@ const isFormValid=isNameValid(formData?.name);
                                 dataTestId="required"
                             ></RdsCheckbox>
                         </div>
-                        <div className="row mb-3">
+                        <div className="row mb-1">
                             <RdsCheckbox
                                 id="0"
                                 label="Emphasize"
@@ -115,7 +115,7 @@ const isFormValid=isNameValid(formData?.name);
                                 dataTestId="emphasize"
                             ></RdsCheckbox>
                         </div>
-                        <div className="row mb-3">
+                        <div className="row mb-1">
                             <RdsCheckbox
                                 id="0"
                                 label="Show in Discovery Document"
@@ -127,7 +127,7 @@ const isFormValid=isNameValid(formData?.name);
                             ></RdsCheckbox>
                         </div>
                     </div>
-                    <div className="d-flex flex-column-reverse ps-4 flex-lg-row flex-md-column-reverse flex-row flex-xl-row flex-xxl-row footer-buttons gap-2 mt-3 pb-3">
+                    <div className="d-flex flex-column-reverse ps-4 flex-lg-row flex-md-column-reverse flex-row flex-xl-row flex-xxl-row footer-buttons gap-2 mt-3 pb-3 p-4">
                         <RdsButton
                             class="me-2"
                             tooltipTitle={""}

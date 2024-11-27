@@ -5,14 +5,13 @@ export interface RdsScatterChartProps {
     labels: any[],
     options: ChartConfiguration['options'],
     dataSets: ChartConfiguration['data']['datasets'],
-    width: number,
     height?: number,
     chartStyle?: string,
     id: string
 }
 
 const RdsScatterChart = (props: RdsScatterChartProps) => {
-    const { id, labels, options, dataSets, width, height } = props;
+    const { id, labels, options, dataSets, height } = props;
     const chartRef = useRef<Chart | null>(null);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -34,7 +33,6 @@ const RdsScatterChart = (props: RdsScatterChartProps) => {
             if (height) {
                 chartRef.current.canvas.style.height = height + "px";
             }
-            chartRef.current.canvas.style.width = width + "px";
         }
 
         return () => {
@@ -42,7 +40,7 @@ const RdsScatterChart = (props: RdsScatterChartProps) => {
                 chartRef.current.destroy();
             }
         };
-    }, [id, labels, options, dataSets, width, height]);
+    }, [id, labels, options, dataSets, height]);
 
     return (
         <div>

@@ -12,6 +12,9 @@ export interface RdsInputProps {
   readonly?: boolean;
   value?: string;
   inputType?: string;
+  state?: string;
+  style?: string;
+  showTitle?: boolean;
   validatonPattern?: RegExp;
   validationMsg?: string;
   placeholder?: string;
@@ -40,6 +43,8 @@ export interface RdsInputProps {
   minValue?: any;
   maxValue?: any;
   showIcon?: boolean;
+  HintText?: string;
+  ShowHintText?: boolean;
 }
 
 const RdsInput = React.forwardRef<HTMLInputElement, RdsInputProps>(
@@ -126,11 +131,25 @@ const RdsInput = React.forwardRef<HTMLInputElement, RdsInputProps>(
     } else if (props.size == "large") {
       size = "lg";
     }
+    const borderColorClass=
+    (props.state ==="active"?" inputOutlineActive ":"  ")+
+    (props.state ==="selected"?" inputOutlineSelected ":" ")+
+    (props.state ==="error"?" inputOutlineError ":"  ")+
+    (props.state==="default"?" inputOutline ":"  ")
+    ;
+
     const inputClasses =
-      "form-control rounded mt-1 form-control-" +
+      "form-control  mt-1 form-control-" +
       size +
       " flex-grow-1 " +
-      props.customClasses;
+      props.customClasses +
+      (props.state === "active" ? " inputActive" : "") +
+      (props.state === "selected" ? " inputSelected" : "")+
+      (props.state === "error" ? " inputError" : "") +
+      (props.style === "Bottom Outline" ? borderColorClass : "") +
+      (props.style === "Pill" ? " rounded-5" : " rounded ");
+
+
 
     const getClassNames = () => {
       let defaultClasses: string = "input-group mb-0";
@@ -157,20 +176,41 @@ const RdsInput = React.forwardRef<HTMLInputElement, RdsInputProps>(
       return labelPositionClass;
     };
     const fontWeight = "fw-" + props.fontWeight;
-
+    const getPlaceholder = () => {
+      switch (props.inputType) {
+        case 'phone number':
+          return 'Add Phone Number';
+        case 'card number':
+          return 'Add Card Number';
+          case 'otp':
+          return 'Enter OTP';
+        case 'number':
+          return 'Enter Number';
+        case 'password':
+          return 'Enter Password';
+        case 'email':
+          return 'Enter Email';
+        case 'text':
+          return 'Enter Text';
+        default:
+          return 'Enter value';
+      }
+    };
     return (
       <>
         {/* test  */}
-        <div className={labelClass()}>
-          <label
+        <div className={`${labelClass()}`}>
+          {props.showTitle && (
+           <label
             htmlFor={props.id}
-            className={`text-capitalize form-label ${fontWeight}`}
+            className={`text-capitalize mt-2 form-label ${fontWeight}`}
           >
             {props.label}
             {(props.required || props.validatonPattern) && (
               <span className="text-danger ms-1">*</span>
             )}
           </label>
+          )}
           {!props.tooltipTitle && (
             <div className={getClassNames()}>
               <input
@@ -186,9 +226,9 @@ const RdsInput = React.forwardRef<HTMLInputElement, RdsInputProps>(
                 maxLength={
                   props.inputType === "otp" && props.singleDigit ? 1 : undefined
                 }
-                className={`${inputClasses}`}
+                className={`${inputClasses} `}
                 id={props.id}
-                placeholder={props.placeholder}
+                placeholder={getPlaceholder()}
                 form={props.formName}
                 required={props.required}
                 onFocus={props.onFocus}
@@ -196,7 +236,7 @@ const RdsInput = React.forwardRef<HTMLInputElement, RdsInputProps>(
                 onKeyDown={props.onKeyDown}
                 value={value ?? ""}
                 onChange={handlerChange}
-                disabled={props.isDisabled}
+                disabled={props.isDisabled || props.state === "disable"}
                 readOnly={props.readonly}
                 data-testid={props.dataTestId}
                 onClick={props.onClick}
@@ -205,20 +245,36 @@ const RdsInput = React.forwardRef<HTMLInputElement, RdsInputProps>(
                 autoFocus={props.autoFocus && props.autoFocus[1] === 0}
                 ref={ref}
               />
-              {props.inputType === "password" && props.showIcon == true && (
-                <RdsIcon
-                  name={showPassword ? "eye" : "eye_slash"}
-                  classes="password-toggle"
-                  height="16px"
-                  width="16px"
-                  fill={false}
-                  stroke={true}
-                  opacity="0.5"
-                  onClick={() => setShowPassword(!showPassword)}
-                />
-              )}
+              
+              {props.inputType === "password" && props.showIcon ? (
+        <RdsIcon
+          name={showPassword ? "eye" : "eye_slash"}
+          classes="password-toggle"
+          height="16px"
+          width="16px"
+          fill={false}
+          stroke={true}
+          opacity="0.5"
+          onClick={() => setShowPassword(!showPassword)}
+        />
+      ) : (
+        props.showIcon && (
+          <RdsIcon
+            name="information"
+            classes="password-toggle"
+            height="16px"
+            width="16px"
+            fill={false}
+            stroke={true}
+            opacity="0.5"
+          />
+        )
+      )}
+             
             </div>
+          
           )}
+            
           {props.tooltipTitle && (
             <Tooltip text={props.tooltipTitle} place={props.tooltipPlacement}>
               <div className={getClassNames()}>
@@ -245,37 +301,57 @@ const RdsInput = React.forwardRef<HTMLInputElement, RdsInputProps>(
                   readOnly={props.readonly}
                   data-testid={props.dataTestId}
                 ></input>
+                
                 {props.labelPosition == "floating" && (
                   <>
                     {props.label && (
                       <>
+                      {props.showTitle && (
                         <label
                           htmlFor={props.id}
-                          className={`form-label text-capitalize ${fontWeight}`}
+                          className={`form-label mt-2 text-capitalize ${fontWeight}`}
                         >
                           {" "}
                           {props.label}
                         </label>
+                        )}
                       </>
                     )}
                   </>
                 )}
-                {props.inputType === "password" && props.showIcon == true && (
-                  <RdsIcon
-                    name={showPassword ? "eye" : "eye_slash"}
-                    classes="password-toggle"
-                    height="20px"
-                    width="20px"
-                    fill={false}
-                    stroke={true}
-                    opacity="0.5"
-                    onClick={() => setShowPassword(!showPassword)}
-                  />
-                )}
+                {props.inputType === "password" && props.showIcon ? (
+        <RdsIcon
+          name={showPassword ? "eye" : "eye_slash"}
+          classes="password-toggle"
+          height="16px"
+          width="16px"
+          fill={false}
+          stroke={true}
+          opacity="0.5"
+          onClick={() => setShowPassword(!showPassword)}
+        />
+      ) : (
+        props.showIcon && (
+          <RdsIcon
+            name="information"
+            classes="password-toggle"
+            height="16px"
+            width="16px"
+            fill={false}
+            stroke={true}
+            opacity="0.5"
+          />
+        )
+      )}
+   
               </div>
+              
             </Tooltip>
-          )}
 
+          )}
+{props.ShowHintText && (
+                <span className="hint-text">{props.HintText}</span>
+              )}
           {props.required && !props.validationMsg && (
             <div className="form-control-feedback">
               {props.required && props.value == "" && hasError && isTouch && (
@@ -295,15 +371,32 @@ const RdsInput = React.forwardRef<HTMLInputElement, RdsInputProps>(
                 )}
             </div>
           )}
-
+          {props.required && props.value !== "" && (
+            <div className="form-control-feedback">
+              {props.validationMsg &&
+                props.inputType === "card number" &&
+                isTouch && (
+                  <span className="text-danger">{props.validationMsg}</span>
+                )}
+            </div>
+          )}
+          {props.required && props.value !== "" && (
+            <div className="form-control-feedback">
+              {props.validationMsg &&
+                props.inputType === "phone number" &&
+                isTouch && (
+                  <span className="text-danger">{props.validationMsg}</span>
+                )}
+            </div>
+          )}
           {props.validatonPattern && (
             <div className="form-control-feedback">
-              {/* {props.value === "" && isTouch && props.required && (
+              {props.value === "" && isTouch && props.required && (
                 <span className="text-danger">
                   {" "}
                   {props.label} {t("is required") || ""}{" "}
                 </span>
-              )} */}
+              )}
               {props.validatonPattern &&
                 props.validationMsg &&
                 isTouch &&
@@ -326,5 +419,7 @@ const RdsInput = React.forwardRef<HTMLInputElement, RdsInputProps>(
     );
   }
 );
-
+RdsInput.defaultProps = {
+  showTitle: true,
+};
 export default RdsInput;

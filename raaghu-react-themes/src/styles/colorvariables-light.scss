@@ -3988,32 +3988,36 @@ $error-progress-color: conic-gradient( $bg-error-dark-default calc(var(--progres
                             }
                         }
 
-                        .nav-tabs.vertical-alt-left-line {
-                            border-bottom: 0px;
-                            overflow-x:hidden;
-                            li {
-                                background-color: $bg-primary-lighter-default;
-                                color: $txt-neutral-medium-default;
-                            }
+.nav-tabs.vertical-alt-left-line {
+    border-bottom: 0px;
+    overflow-x: hidden;
 
-                            .selected {
-                                color: $primary;
-                                border-left:2px solid $primary;
-                                border-radius: 0px;
-                            }
-                            .nav-link:after{
-                                border-bottom: 0px;
-                                bottom:unset;
-                                left:0px;
-                                transition:height 0.5s ease, border-color 0.5s ease;
-                                top: 0px;
-                                position: absolute; 
-                            }
-                            .nav-link:hover:after{
-                                height: 100%;
-                                border-left:2px solid $primary;
-                            }
-                        }
+    li {
+        background-color: $bg-primary-lighter-default;
+        color: $txt-neutral-medium-default;
+    }
+
+    .selected {
+        color: $primary;
+        border-left: 2px solid $primary;
+        border-radius: 0px;
+        color: $txt-neutral-medium-default;
+    }
+
+    .nav-link:after {
+        border-bottom: 0px;
+        bottom: unset;
+        left: 0px;
+        transition: height 0.5s ease, border-color 0.5s ease;
+        top: 0px;
+        position: absolute;
+    }
+
+    .nav-link:hover:after {
+        height: 100%;
+        border-left: 2px solid $primary;
+    }
+}
                         .nav-tabs.vertical-right-line {
                             border-bottom: 0px;
                             overflow-x:hidden;
@@ -4189,4 +4193,11 @@ $error-progress-color: conic-gradient( $bg-error-dark-default calc(var(--progres
 
 .avatar-solid, .avatar-dotted, .avatar-dashed {
     border-color: $input-neutral-outline-default;
+}
+.form-check-input-type-circular-indeterminate{
+    border-color:$primary;
+}
+.bg-layer {
+    background-color: rgb(255 255 255 / 57%);
+    padding: 1rem;
 }

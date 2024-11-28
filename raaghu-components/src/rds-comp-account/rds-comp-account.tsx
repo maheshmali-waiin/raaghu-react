@@ -127,7 +127,7 @@ const RdsCompAccount = (props: RdsCompAccountProps) => {
                 layout="Vertical"
                 fill={false}
                 type="tabs"
-                style="Select Tabs"
+                style="Vertical -Pointer"
                 justified={false}
                 activeNavTabId={activeNavTabId}
                 activeNavtabOrder={(activeNavTabId) => {

@@ -140,7 +140,8 @@ const RdsCompFeatures = (props: RdsCompFeatureProps) => {
         <RdsNavtabs
           navtabsItems={navtabs}
           layout="Vertical"
-          fill={false}
+                  fill={false}
+                  style="Vertical -Pointer"
           justified={false}
           id="features"
           activeNavTabId={activeNavTabId}

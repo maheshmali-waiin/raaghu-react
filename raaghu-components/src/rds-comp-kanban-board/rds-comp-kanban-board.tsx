@@ -510,7 +510,7 @@ const RdsCompKanbanBoard = (props: RdsCompKanbanBoardProps) => {
                                                                                                 </span>
                                                                                                 <div className="priority-btn mt-1">
                                                                                                     <RdsBadge
-                                                                                                        badgeType="rectangle"
+                                                                                                        badgeType="box"
                                                                                                         colorVariant="primary"
                                                                                                         label={
                                                                                                             subCard.ticketPriority

@@ -12,7 +12,6 @@ const meta: Meta = {
     tags: ['autodocs'],
     argTypes: {
         colorVariant: {
-            options: progress_colors,
             control: { type: "select" },
             if: { arg: 'colorVariant' }
         },
